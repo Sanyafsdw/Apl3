@@ -1,0 +1,84 @@
+﻿@model WebApplication3.Data.ViewModels.AddCarViewModel
+
+<form class="p-a-1" asp-action="EditCar" method="post" enctype="multipart/form-data">
+    <input class="form-control d-none" asp-for="@Model.Car.CarId" />
+
+
+    <h3 class="text-center mb-4">@ViewBag.HeadText</h3>
+
+
+    <div class="form-row mb-4">
+        <div class="form-group col-md-12">
+            <label asp-for="@Model.Car.Name" class="form-label">Название</label>
+            <input asp-for="@Model.Car.Name" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-row mb-4">
+        <div class="form-group col-md-12">
+            <label asp-for="@Model.Car.ShortDesc" class="form-label">Краткое описание</label>
+            <input asp-for="@Model.Car.ShortDesc" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-row mb-4">
+        <div class="form-group col-md-12">
+            <label asp-for="@Model.Car.LongDesc" class="form-label">Полное описание</label>
+            <textarea asp-for="@Model.Car.LongDesc" class="form-control" rows="3"></textarea>
+        </div>
+    </div>
+
+
+    <div class="form-row mb-4">
+        <div class="form-group col-md-6" style="margin-bottom: 15px;">
+            <label asp-for="@Model.Car.Price" class="form-label">Цена</label>
+            <input type="number" asp-for="@Model.Car.Price" class="form-control" style="width: 1295px;" />
+        </div>
+        <div class="form-group col-md-6" style="margin-bottom: 15px;">
+            <label asp-for="@Model.Car.CategoryId" class="form-label">ID категории</label>
+            <select asp-for="@Model.Car.CategoryId" class="form-select" style="width: 1295px;">
+                <option selected>Выберите категорию</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.CategoryId">@category.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-row mb-4">
+        <div class="form-group col-md-6">
+            <label asp-for="@Model.Car.IsFavourite" class="form-label">
+                <input asp-for="@Model.Car.IsFavourite" class="form-check-input" type="checkbox" />
+                Добавить на главной странице
+            </label>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="@Model.Car.Available" class="form-label">
+                <input asp-for="@Model.Car.Available" class="form-check-input" type="checkbox" />
+                Доступен для заказа
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group mb-4">
+        <label asp-for="@Model.Car.Img" class="form-label">Картинка</label>
+        <input asp-for="@Model.Car.Img" type="file" name="uploadedFile" class="form-control" />
+    </div>
+
+
+    <div class="d-flex gap-3 mb-4">
+
+        <button type="submit" class="btn btn-lg shadow-lg flex-fill"
+                style="font-size: 1rem; height: 40px; border-radius: 50px; background: linear-gradient(145deg, #007bff, #0056b3);">
+            <i class="fas fa-plus-circle"></i> Добавить
+        </button>
+
+
+        <a href="@Url.Action("CarList", "Car")" class="btn btn-lg shadow-lg"
+           style="font-size: 1rem; height: 40px; border-radius: 50px; background: linear-gradient(145deg, #dc3545, #c82333); width: 100%; max-width: 120px;">
+            <i class="fas fa-times-circle"></i> Отмена
+        </a>
+    </div>
+</form>

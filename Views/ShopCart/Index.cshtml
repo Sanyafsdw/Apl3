@@ -1,0 +1,55 @@
+﻿@model WebApplication3.Data.Models.Cart.ShopCart
+
+<div class="container mt-5">
+    <!-- Сообщение если корзина пуста -->
+    @if (TempData["EmptyCartMessage"] != null)
+    {
+        <div class="alert alert-warning mt-3 text-center" style="font-size: 1.2rem;">
+            <i class="fas fa-exclamation-circle me-2"></i> @TempData["EmptyCartMessage"]
+        </div>
+    }
+
+    <!-- Карточки товаров -->
+    @foreach (var el in Model.ListShopItems)
+    {
+        <div class="card mb-4 shadow-lg" style="border-radius: 20px; overflow: hidden; background: linear-gradient(145deg, #343a40, #3e444b);">
+            <div class="row g-0">
+                <!-- Картинка -->
+                <div class="col-md-5">
+                    <img src="@el.Car.Img"
+                         class="img-fluid"
+                         style="height: 100%; object-fit: cover; border-top-left-radius: 20px; border-bottom-left-radius: 20px;" />
+                </div>
+                <!-- Информация -->
+                <div class="col-md-7 d-flex flex-column">
+                    <div class="card-body text-white">
+                        <h3 class="card-title fw-bold text-uppercase">@el.Car.Name</h3>
+                        <p class="card-text">@el.Car.ShortDesc</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center px-3 pb-3 mt-auto">
+                        <h4 class="fw-bold" style="color: #007bff;">@el.Car.Price.ToString("c")</h4>
+                        <form method="post" asp-action="RemoveFromCart" asp-controller="ShopCart">
+                            <input type="hidden" name="id" value="@el.ShopCartItemId" />
+                            <button type="submit" class="btn btn-outline-danger btn-lg" style="border-radius: 30px;">
+                                <i class="fas fa-trash-alt"></i> Удалить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Кнопка "Оплатить" -->
+    @if (Model.ListShopItems.Any())
+    {
+        <div class="text-center">
+            <form method="post" asp-action="Checkout" asp-controller="Order">
+                <button type="submit" class="btn btn-primary btn-lg mt-4 px-5 shadow-lg"
+                        style="font-size: 1.3rem; border-radius: 50px; background: linear-gradient(145deg, #007bff, #0056b3);">
+                    <i class="fas fa-shopping-cart"></i> Оплатить
+                </button>
+            </form>
+        </div>
+    }
+</div>

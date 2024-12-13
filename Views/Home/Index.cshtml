@@ -1,0 +1,50 @@
+﻿@model WebApplication3.Data.ViewModels.HomeIndexViewModel
+
+<link rel="stylesheet" href="~/css/Card.css" />
+<h2>@Model.PageName</h2>
+
+<div class="row">
+    <div class="col col-md-2">
+        @await Component.InvokeAsync("NavigationMenu")
+    </div>
+    <div class="col col-md-10">
+        <!-- Пагинация -->
+        <div page-model="@Model.PagingInfo" page-action="Index"
+             page-url-catId="@Model.CurrentCategory"
+             page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-default"
+             page-class-selected="btn-primary" class="btn-group pull-right">
+        </div>
+
+        <!-- Список машин -->
+        <div class="row mt-5 mb-2">
+            @foreach (var car in Model.Cars)
+            {
+                <div class="col-lg-4">
+                    <div class="card">
+                        <img class="card-img-top" src="@car.Img" alt="@car.Name" />
+                        <div class="card-body">
+                            <h5 class="card-title">@car.Name</h5>
+                            <p class="card-text">@car.ShortDesc</p>
+                            <p class="card-price">Цена: @car.Price.ToString("c")</p>
+
+                            <!-- Кнопка "Подробнее" -->
+                            <a href="@Url.Action("SingleCar", "Car", new { carId = car.CarId })"
+                               class="btn btn-lg mt-2 shadow-lg"
+                               style="font-size: 1rem; border-radius: 50px; background: linear-gradient(145deg, #007bff, #0056b3); width: 100%; max-width: 300px;">
+                                <i class="fas fa-info-circle"></i> Подробнее
+                            </a>
+
+                            <!-- Кнопка "В корзину" -->
+                            <a href="@Url.Action("AddToCart", "ShopCart", new { id = car.CarId })"
+                               class="btn btn-lg mt-2 shadow-lg"
+                               style="font-size: 1rem; border-radius: 50px; background: linear-gradient(145deg, #28a745, #218838); width: 100%; max-width: 300px;">
+                                <i class="fas fa-cart-plus"></i> В корзину
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model WebApplication3.Data.Models.Category
+
+<form class="p-a-1 mt-4" asp-action="EditCategory" method="post" enctype="multipart/form-data">
+    <input asp-for="CategoryId" class="form-control d-none" />
+
+    <!-- Раздел с полями для Названия и Описания -->
+    <div class="form-row mb-4">
+        <div class="form-group col-md-12">
+            <label asp-for="Name" class="form-label">Название</label>
+            <input asp-for="Name" class="form-control custom-width" />
+        </div>
+    </div>
+
+    <div class="form-row mb-4">
+        <div class="form-group col-md-12">
+            <label asp-for="Desc" class="form-label">Описание</label>
+            <input asp-for="Desc" class="form-control custom-width" />
+        </div>
+    </div>
+
+    <!-- Кнопки с отступами и 3/4 ширины для кнопки Добавить, 1/4 для Отмены -->
+    <div class="d-flex gap-3 mb-4">
+        <!-- Кнопка добавления (3/4) -->
+        <button type="submit" class="btn btn-lg shadow-lg flex-fill"
+                style="font-size: 1rem; height: 40px; border-radius: 50px; background: linear-gradient(145deg, #007bff, #0056b3);">
+            <i class="fas fa-save"></i> Сохранить
+        </button>
+
+        <!-- Кнопка отмены (1/4) -->
+        <a href="@Url.Action("CategoryList", "Category")" class="btn btn-lg shadow-lg"
+           style="font-size: 1rem; height: 40px; border-radius: 50px; background: linear-gradient(145deg, #dc3545, #c82333); width: 100%; max-width: 120px;">
+            <i class="fas fa-times-circle"></i> Отмена
+        </a>
+    </div>
+</form>
+
+<!-- Стили -->
+<style>
+    /* Применяем кастомные стили для выравнивания и отступов */
+    .custom-width {
+        width: 100% !important;
+    }
+
+    .form-label {
+        margin-bottom: 0.5rem; /* Отступ снизу для всех меток */
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem; /* Отступ снизу для всех групп */
+    }
+</style>

@@ -271,3 +271,4 @@ C:\Users\Eva\Desktop\WebApplication3\WebApplication3\obj\Debug\net8.0\WebApplica
 C:\Users\Eva\Desktop\WebApplication3\WebApplication3\obj\Debug\net8.0\WebApplication3.genruntimeconfig.cache
 C:\Users\Eva\Desktop\WebApplication3\WebApplication3\obj\Debug\net8.0\ref\WebApplication3.dll
 C:\Users\Eva\Desktop\WebApplication3\WebApplication3\bin\Debug\net8.0\settings.json
+C:\Users\Eva\Desktop\WebApplication3\WebApplication3\obj\Debug\net8.0\WebApplication3.sourcelink.json
